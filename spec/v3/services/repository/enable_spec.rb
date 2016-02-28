@@ -31,6 +31,18 @@ describe Travis::API::V3::Services::Repository::Enable do
     }}
   end
 
+  describe "wrong HTTP method returns 405 status" do
+    let(:headers)   {{  }}
+    before          { get("/v3/repo/1/enable", {}, headers) }
+
+    example { expect(last_response.status).to be == 405 }
+    example { expect(JSON.load(body)).to      be ==     {
+      "@type"         => "error",
+      "error_type"    => "method_not_allowed",
+      "error_message" => "method not allowed"
+    }}
+  end
+
   describe "existing repository, no push access" do
     let(:token)   { Travis::Api::App::AccessToken.create(user: repo.owner, app_id: 1) }
     let(:headers) {{ 'HTTP_AUTHORIZATION' => "token #{token}"                        }}

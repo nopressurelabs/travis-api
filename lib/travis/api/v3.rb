@@ -36,6 +36,7 @@ module Travis
       RequestLimitReached = ClientError        .create('request limit reached for resource', status: 429)
       AlreadySyncing      = ClientError        .create('sync already in progress', status: 409)
       MethodNotAllowed    = ClientError        .create('method not allowed', status: 405)
+      TeaPotError         = ClientError        .create('I\'m a teapot', status: 418)
     end
   end
 end

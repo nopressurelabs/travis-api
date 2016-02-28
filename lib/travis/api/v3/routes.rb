@@ -71,6 +71,8 @@ module Travis::API::V3
       post :disable, '/disable'
       post :star,    '/star'
       post :unstar,  '/unstar'
+      
+      get  :coffee,   '/brew/coffee'
 
       resource :branch do
         route '/branch/{branch.name}'
